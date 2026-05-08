@@ -31,6 +31,8 @@
     "sort-package-json": "sort-package-json package.json",
     "test": "hardhat test",
     "test:forge": "forge test",
+    "volume:sim:hardhat": "hardhat test test/mantle.volume.test.ts",
+    "volume:sim:forge": "set -a && . ./.env && set +a && forge script scripts/forge/VolumeSim.s.sol:VolumeSim --fork-url \"$MANTLE_RPC_URL\" -vv",
     "test:forge:gas": "forge test --gas-report",
     "test:forge:v": "forge test -vvv"
   },
