@@ -25,11 +25,10 @@ export default defineConfig({
     },
   },
   paths: {
-    sources: "./src",
+    sources: "./contracts",
     tests: {
       mocha: "./test",
       nodejs: "./test/node",
-      solidity: "./test/sol",
     },
     cache: "./cache_hardhat",
     artifacts: "./artifacts",

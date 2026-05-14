@@ -1,51 +1,47 @@
 # mantle-university-tour
 
-Mantle 체인 위에서 컨트랙트 / 포크 시뮬레이션 / 배포를 다루는 워크스페이스입니다. **Hardhat 3 + Foundry** 스택을 사용합니다.
+Mantle 체인 위에서 컨트랙트 / 포크 시뮬레이션 / 배포를 다루는 워크스페이스입니다. **Hardhat 3** 과 **Foundry** 를 같은 컨트랙트에 대해 각각 보여드리기 위해, 두 스택을 별도 폴더로 분리해 두었습니다.
 
-## 어디를 보시면 되나요
+## 폴더 구조
 
-| 보고 싶으신 것                         | 파일                                      |
-| -------------------------------------- | ----------------------------------------- |
-| Hardhat / Foundry 설정                 | `hardhat.config.ts`, `foundry.toml`       |
-| ERC20 메타데이터 리더                  | `src/MantleUSDC.sol`                      |
-| Merchant Moe LB v2.2 라우터 인터페이스 | `src/interfaces/IMerchantMoeLBRouter.sol` |
-| 체인 정보 조회 (eth-chainlist)         | `test/mantle.chain.test.ts`               |
-| 메인넷 USDC 포크 읽기 (viem)           | `test/mantle.usdc.test.ts`                |
-| 메인넷 USDC 포크 읽기 (forge)          | `test/sol/MantleUSDC.t.sol`               |
-| **USDC↔USDT 볼륨 펌프 시뮬 (Hardhat)** | `test/mantle.volume.test.ts`              |
-| **USDC↔USDT 볼륨 펌프 시뮬 (Forge)**   | `scripts/forge/VolumeSim.s.sol`           |
-| Sepolia 배포 (Ignition)                | `ignition/modules/MantleUSDCDeploy.ts`    |
-| Sepolia 배포 (Forge)                   | `scripts/forge/Deploy.s.sol`              |
+```
+mantle-university-tour/
+├── hardhat/   ← Hardhat 3 + viem + Ignition
+└── foundry/   ← Foundry (forge / forge script)
+```
 
-## 자주 쓰이는 명령어
+두 폴더는 서로 독립적입니다. 원하는 스택의 폴더로 이동해서 작업하시면 됩니다.
+
+- **Hardhat 으로 작업하기** → [`hardhat/README.md`](./hardhat/README.md)
+- **Foundry 로 작업하기** → [`foundry/README.md`](./foundry/README.md)
+
+## 빠른 시작
 
 ```bash
-# 의존성 설치
+# 처음 받았다면 서브모듈 (forge-std, openzeppelin-contracts) 받기
+git submodule update --init --recursive
+
+# Hardhat
+cd hardhat
 yarn install
-
-# 테스트 실행 (전부 통과합니다: 6 mocha + 2 solidity + 2 forge)
 yarn test
-yarn test:forge
 
-# 볼륨 펌프 시뮬레이션 (메인넷 fork, broadcast 없음)
-yarn volume:sim:hardhat
-yarn volume:sim:forge
-
-# Mantle Sepolia 배포
-yarn deploy:ignition:testnet
-yarn deploy:forge:testnet
+# Foundry
+cd foundry
+forge build
+forge test
 ```
 
-## .env 설정
+## 무엇을 보여드리나요
 
-아래 항목들을 프로젝트 루트의 `.env` 파일에 채워 주시면 됩니다.
+같은 컨트랙트(`MantleUSDC.sol`)에 대해 다음 작업들을 두 스택에서 각각 보실 수 있습니다.
 
-```
-PRIVATE_KEY=0x...
-MANTLE_RPC_URL=https://rpc.mantle.xyz
-MANTLE_TESTNET_RPC_URL=https://rpc.sepolia.mantle.xyz
-MANTLESCAN_API_KEY=...   # (선택 사항, 컨트랙트 verify 시 필요)
-```
+| 보고 싶으신 것                 | Hardhat                                        | Foundry                          |
+| ------------------------------ | ---------------------------------------------- | -------------------------------- |
+| 메인넷 USDC 포크 읽기          | `hardhat/test/mantle.usdc.test.ts`             | `foundry/test/MantleUSDC.t.sol`  |
+| 체인 정보 조회 (eth-chainlist) | `hardhat/test/mantle.chain.test.ts`            | —                                |
+| USDC↔USDT 볼륨 펌프 시뮬       | `hardhat/test/mantle.volume.test.ts`           | `foundry/script/VolumeSim.s.sol` |
+| Sepolia 배포                   | `hardhat/ignition/modules/MantleUSDCDeploy.ts` | `foundry/script/Deploy.s.sol`    |
 
 ## 볼륨 펌프 시뮬 결과 요약
 
@@ -75,5 +71,8 @@ MANTLESCAN_API_KEY=...   # (선택 사항, 컨트랙트 verify 시 필요)
 
 사용된 컨트랙트는 다음과 같습니다.
 
-- 라우터: `0x013e138EF6008ae5FDFDE29700e3f2Bc61d21E3a`
-- USDC/USDT LB 페어: `0x48C1A89af1102Cad358549e9Bb16aE5f96CddFEc` (binStep=1, V2_2)
+- USDC: [`0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9`](https://mantlescan.xyz/token/0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9)
+- USDT: [`0x201EBa5CC46D216Ce6DC03F6a759e8E766e956aE`](https://mantlescan.xyz/token/0x201EBa5CC46D216Ce6DC03F6a759e8E766e956aE)
+- Merchant Moe LB Router: [`0x013e138EF6008ae5FDFDE29700e3f2Bc61d21E3a`](https://mantlescan.xyz/address/0x013e138EF6008ae5FDFDE29700e3f2Bc61d21E3a)
+- USDC/USDT LB Pair (binStep=1, V2_2): [`0x48C1A89af1102Cad358549e9Bb16aE5f96CddFEc`](https://mantlescan.xyz/address/0x48C1A89af1102Cad358549e9Bb16aE5f96CddFEc)
+- Chainlink MNT/USD Feed: [`0xD97F20bEbeD74e8144134C4b148fE93417dd0F96`](https://data.chain.link/feeds/mantle/mantle/mnt-usd)

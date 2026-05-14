@@ -32,4 +32,13 @@ export default tseslint.config(
       "no-console": "off",
     },
   },
+  {
+    // Chai assertions (e.g. `expect(x).to.exist`, `.to.be.empty`) are property
+    // accesses that read as unused expressions to the linter. Tests are the
+    // only place this pattern shows up.
+    files: ["test/**/*.ts"],
+    rules: {
+      "@typescript-eslint/no-unused-expressions": "off",
+    },
+  },
 );

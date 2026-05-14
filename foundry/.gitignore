@@ -1,0 +1,22 @@
+# Foundry build output (default profile + custom demo profiles in foundry.toml)
+out/
+out_via_ir/
+out_stack_deep/
+cache/
+cache_forge/
+
+# Foundry artifacts
+broadcast/
+foundry.lock
+.gas-snapshot
+
+# Dependencies (lib/* is submodules, keep tracked submodules)
+lib/*
+!lib/forge-std
+!lib/openzeppelin-contracts
+!lib/solady
+
+# Env
+.env
+.env.*
+!.env.example

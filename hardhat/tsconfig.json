@@ -20,8 +20,9 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "./scripts/**/*.ts",
     "./test/**/*.ts",
+    "./ignition/**/*.ts",
+    "./scripts/**/*.ts",
     "./types/**/*.d.ts",
     "./hardhat.config.ts"
   ],

@@ -1,43 +1,14 @@
-# Dev docs
-/md/
-/instruction/
+# Hardhat and Foundry each have their own .gitignore in their folder.
+# This root file only covers things that may appear anywhere in the repo.
 
-# Compiler output
-out/
-cache/
-artifacts/
-typechain-types/
-
-# Typechain (auto-generated)
-types/ethers-contracts/
-
-# Hardhat
-cache_hardhat/
-
-# Hardhat Ignition deployment state
-ignition/deployments/
-
-# Foundry
-cache_forge/
-foundry.lock
-.gas-snapshot
-
-# Dependencies
-node_modules/
-lib/*
-!lib/forge-std
-
-# Yarn
-.yarn/
-.pnp.*
-
-# TypeScript
-*.tsbuildinfo
-
-# Environment variables
+# Env
 .env
 .env.*
 !.env.example
+
+# Dev docs
+/md/
+/instruction/
 
 # IDE
 .idea/
@@ -49,18 +20,6 @@ lib/*
 # OS
 .DS_Store
 Thumbs.db
-
-# Coverage
-coverage/
-coverage.json
-lcov.info
-
-# Build
-build/
-dist/
-
-# Forge broadcast & sensitive run artifacts
-broadcast/
 
 # Logs
 *.log
