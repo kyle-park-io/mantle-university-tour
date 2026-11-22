@@ -10,23 +10,23 @@ Mantle 체인 위에서 컨트랙트 / 포크 시뮬레이션 / 배포를 다루
 |---|---|
 | [`docs/`](docs/) | 2026년 기준 Solidity 개발 환경 세팅 가이드 |
 | [`foundry/`](foundry/) | Foundry 스택(forge, forge script). foundry.toml에 기본, via_ir, stack_deep 프로파일 |
-| &emsp;&emsp;[`demos/`](foundry/demos/) | 기본 빌드에 들어가지 않는 데모 |
-| &emsp;&emsp;&emsp;&emsp;[`stack_too_deep/`](foundry/demos/stack_too_deep/) | stack too deep 오류와 via_ir 설정으로 해결되는 과정을 보이는 컨트랙트 하나 |
-| &emsp;&emsp;[`lib/`](foundry/lib/) | forge-std, openzeppelin-contracts, solady. 세 개 모두 git 서브모듈(.gitmodules) |
-| &emsp;&emsp;[`script/`](foundry/script/) | forge script. 테스트넷 배포(Deploy.s.sol)와 포크 위 볼륨 시뮬레이션(VolumeSim.s.sol) |
-| &emsp;&emsp;[`src/`](foundry/src/) | 컨트랙트(MantleUSDC, ChainlinkPriceReader) |
-| &emsp;&emsp;&emsp;&emsp;[`interfaces/`](foundry/src/interfaces/) | Chainlink AggregatorV3와 Merchant Moe LBRouter의 최소 인터페이스 |
-| &emsp;&emsp;&emsp;&emsp;[`mocks/`](foundry/src/mocks/) | USDC를 흉내 내는 모의 ERC20(OpenZeppelin 판과 Solady 판) |
-| &emsp;&emsp;[`test/`](foundry/test/) | 포크 시험과 OpenZeppelin 대 Solady 가스 비교 |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`demos/`](foundry/demos/) | 기본 빌드에 들어가지 않는 데모 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`stack_too_deep/`](foundry/demos/stack_too_deep/) | stack too deep 오류와 via_ir 설정으로 해결되는 과정을 보이는 컨트랙트 하나 |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`lib/`](foundry/lib/) | forge-std, openzeppelin-contracts, solady. 세 개 모두 git 서브모듈(.gitmodules) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`script/`](foundry/script/) | forge script. 테스트넷 배포(Deploy.s.sol)와 포크 위 볼륨 시뮬레이션(VolumeSim.s.sol) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`src/`](foundry/src/) | 컨트랙트(MantleUSDC, ChainlinkPriceReader) |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`interfaces/`](foundry/src/interfaces/) | Chainlink AggregatorV3와 Merchant Moe LBRouter의 최소 인터페이스 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`mocks/`](foundry/src/mocks/) | USDC를 흉내 내는 모의 ERC20(OpenZeppelin 판과 Solady 판) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`test/`](foundry/test/) | 포크 시험과 OpenZeppelin 대 Solady 가스 비교 |
 | [`hardhat/`](hardhat/) | Hardhat 3 스택(viem, Ignition). 환경 변수 이름은 .env.example에 있다 |
-| &emsp;&emsp;[`contracts/`](hardhat/contracts/) | Foundry의 src와 같은 컨트랙트 |
-| &emsp;&emsp;&emsp;&emsp;[`interfaces/`](hardhat/contracts/interfaces/) | Foundry의 src/interfaces와 같은 인터페이스 |
-| &emsp;&emsp;&emsp;&emsp;[`mocks/`](hardhat/contracts/mocks/) | Foundry의 src/mocks와 같은 모의 ERC20 |
-| &emsp;&emsp;[`ignition/`](hardhat/ignition/) | Ignition 배포 정의 |
-| &emsp;&emsp;&emsp;&emsp;[`modules/`](hardhat/ignition/modules/) | MantleUSDCDeploy.ts. 모의 USDC 배포 모듈 |
-| &emsp;&emsp;[`scripts/`](hardhat/scripts/) | deploy.ts와 volumeSim.ts. Foundry 스크립트를 옮긴 것 |
-| &emsp;&emsp;[`test/`](hardhat/test/) | 포크 시험(USDC, Chainlink, 체인 정보, Merchant Moe 볼륨) |
-| &emsp;&emsp;[`types/`](hardhat/types/) | eth-chainlist 모듈의 타입 선언 |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`contracts/`](hardhat/contracts/) | Foundry의 src와 같은 컨트랙트 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`interfaces/`](hardhat/contracts/interfaces/) | Foundry의 src/interfaces와 같은 인터페이스 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`mocks/`](hardhat/contracts/mocks/) | Foundry의 src/mocks와 같은 모의 ERC20 |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`ignition/`](hardhat/ignition/) | Ignition 배포 정의 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`modules/`](hardhat/ignition/modules/) | MantleUSDCDeploy.ts. 모의 USDC 배포 모듈 |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`scripts/`](hardhat/scripts/) | deploy.ts와 volumeSim.ts. Foundry 스크립트를 옮긴 것 |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`test/`](hardhat/test/) | 포크 시험(USDC, Chainlink, 체인 정보, Merchant Moe 볼륨) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[`types/`](hardhat/types/) | eth-chainlist 모듈의 타입 선언 |
 | [`.gitmodules`](.gitmodules) | foundry/lib/ 서브모듈의 경로와 주소 |
 
 두 폴더는 서로 독립적입니다. 원하는 스택의 폴더로 이동해서 작업하시면 됩니다.
