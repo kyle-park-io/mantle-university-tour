@@ -19,6 +19,17 @@ forge build
 forge test
 ```
 
+## 무엇을 보여드리나요
+
+같은 컨트랙트(`MantleUSDC.sol`)에 대해 다음 작업들을 두 스택에서 각각 보실 수 있습니다.
+
+| 보고 싶으신 것                 | Hardhat                                        | Foundry                          |
+| ------------------------------ | ---------------------------------------------- | -------------------------------- |
+| 메인넷 USDC 포크 읽기          | `hardhat/test/mantle.usdc.test.ts`             | `foundry/test/MantleUSDC.t.sol`  |
+| 체인 정보 조회 (eth-chainlist) | `hardhat/test/mantle.chain.test.ts`            | 없음                             |
+| USDC↔USDT 볼륨 펌프 시뮬       | `hardhat/test/mantle.volume.test.ts`           | `foundry/script/VolumeSim.s.sol` |
+| Sepolia 배포                   | `hardhat/ignition/modules/MantleUSDCDeploy.ts` | `foundry/script/Deploy.s.sol`    |
+
 ## 구조
 
 폴더마다 든 것을 적은 표입니다. 경로는 레포 맨 위 폴더에서 셉니다.
@@ -50,17 +61,6 @@ forge test
 
 - **Hardhat 으로 작업하기** → [`hardhat/README.md`](./hardhat/README.md)
 - **Foundry 로 작업하기** → [`foundry/README.md`](./foundry/README.md)
-
-## 무엇을 보여드리나요
-
-같은 컨트랙트(`MantleUSDC.sol`)에 대해 다음 작업들을 두 스택에서 각각 보실 수 있습니다.
-
-| 보고 싶으신 것                 | Hardhat                                        | Foundry                          |
-| ------------------------------ | ---------------------------------------------- | -------------------------------- |
-| 메인넷 USDC 포크 읽기          | `hardhat/test/mantle.usdc.test.ts`             | `foundry/test/MantleUSDC.t.sol`  |
-| 체인 정보 조회 (eth-chainlist) | `hardhat/test/mantle.chain.test.ts`            | 없음                             |
-| USDC↔USDT 볼륨 펌프 시뮬       | `hardhat/test/mantle.volume.test.ts`           | `foundry/script/VolumeSim.s.sol` |
-| Sepolia 배포                   | `hardhat/ignition/modules/MantleUSDCDeploy.ts` | `foundry/script/Deploy.s.sol`    |
 
 ## 볼륨 펌프 시뮬 결과 요약
 
