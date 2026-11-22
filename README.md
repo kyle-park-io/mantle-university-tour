@@ -2,6 +2,23 @@
 
 Mantle 체인 위에서 컨트랙트 / 포크 시뮬레이션 / 배포를 다루는 워크스페이스입니다. **Hardhat 3** 과 **Foundry** 를 같은 컨트랙트에 대해 각각 보여드리기 위해, 두 스택을 별도 폴더로 분리해 두었습니다.
 
+## 빠른 시작
+
+```bash
+# 처음 받았다면 서브모듈 (forge-std, openzeppelin-contracts) 받기
+git submodule update --init --recursive
+
+# Hardhat
+cd hardhat
+yarn install
+yarn test
+
+# Foundry
+cd foundry
+forge build
+forge test
+```
+
 ## 구조
 
 폴더마다 든 것을 적은 표입니다. 경로는 레포 맨 위 폴더에서 셉니다.
@@ -33,23 +50,6 @@ Mantle 체인 위에서 컨트랙트 / 포크 시뮬레이션 / 배포를 다루
 
 - **Hardhat 으로 작업하기** → [`hardhat/README.md`](./hardhat/README.md)
 - **Foundry 로 작업하기** → [`foundry/README.md`](./foundry/README.md)
-
-## 빠른 시작
-
-```bash
-# 처음 받았다면 서브모듈 (forge-std, openzeppelin-contracts) 받기
-git submodule update --init --recursive
-
-# Hardhat
-cd hardhat
-yarn install
-yarn test
-
-# Foundry
-cd foundry
-forge build
-forge test
-```
 
 ## 무엇을 보여드리나요
 
