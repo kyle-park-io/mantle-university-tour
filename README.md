@@ -2,12 +2,31 @@
 
 Mantle 체인 위에서 컨트랙트 / 포크 시뮬레이션 / 배포를 다루는 워크스페이스입니다. **Hardhat 3** 과 **Foundry** 를 같은 컨트랙트에 대해 각각 보여드리기 위해, 두 스택을 별도 폴더로 분리해 두었습니다.
 
-## 폴더 구조
+## 구조
+
+폴더마다 든 것을 적은 나무입니다. 경로는 레포 맨 위 폴더에서 셉니다.
 
 ```
-mantle-university-tour/
-├── hardhat/   ← Hardhat 3 + viem + Ignition
-└── foundry/   ← Foundry (forge / forge script)
+docs/                               2026년 기준 Solidity 개발 환경 세팅 가이드
+foundry/                            Foundry 스택(forge, forge script). foundry.toml에 기본, via_ir, stack_deep 프로파일
+  demos/                            기본 빌드에 들어가지 않는 데모
+    stack_too_deep/                 stack too deep 오류와 via_ir 설정으로 해결되는 과정을 보이는 컨트랙트 하나
+  lib/                              forge-std, openzeppelin-contracts, solady. 세 개 모두 git 서브모듈(.gitmodules)
+  script/                           forge script. 테스트넷 배포(Deploy.s.sol)와 포크 위 볼륨 시뮬레이션(VolumeSim.s.sol)
+  src/                              컨트랙트(MantleUSDC, ChainlinkPriceReader)
+    interfaces/                     Chainlink AggregatorV3와 Merchant Moe LBRouter의 최소 인터페이스
+    mocks/                          USDC를 흉내 내는 모의 ERC20(OpenZeppelin 판과 Solady 판)
+  test/                             포크 시험과 OpenZeppelin 대 Solady 가스 비교
+hardhat/                            Hardhat 3 스택(viem, Ignition). 환경 변수 이름은 .env.example에 있다
+  contracts/                        Foundry의 src와 같은 컨트랙트
+    interfaces/                     Foundry의 src/interfaces와 같은 인터페이스
+    mocks/                          Foundry의 src/mocks와 같은 모의 ERC20
+  ignition/                         Ignition 배포 정의
+    modules/                        MantleUSDCDeploy.ts. 모의 USDC 배포 모듈
+  scripts/                          deploy.ts와 volumeSim.ts. Foundry 스크립트를 옮긴 것
+  test/                             포크 시험(USDC, Chainlink, 체인 정보, Merchant Moe 볼륨)
+  types/                            eth-chainlist 모듈의 타입 선언
+.gitmodules                         foundry/lib/ 서브모듈의 경로와 주소
 ```
 
 두 폴더는 서로 독립적입니다. 원하는 스택의 폴더로 이동해서 작업하시면 됩니다.
@@ -39,7 +58,7 @@ forge test
 | 보고 싶으신 것                 | Hardhat                                        | Foundry                          |
 | ------------------------------ | ---------------------------------------------- | -------------------------------- |
 | 메인넷 USDC 포크 읽기          | `hardhat/test/mantle.usdc.test.ts`             | `foundry/test/MantleUSDC.t.sol`  |
-| 체인 정보 조회 (eth-chainlist) | `hardhat/test/mantle.chain.test.ts`            | —                                |
+| 체인 정보 조회 (eth-chainlist) | `hardhat/test/mantle.chain.test.ts`            | 없음                             |
 | USDC↔USDT 볼륨 펌프 시뮬       | `hardhat/test/mantle.volume.test.ts`           | `foundry/script/VolumeSim.s.sol` |
 | Sepolia 배포                   | `hardhat/ignition/modules/MantleUSDCDeploy.ts` | `foundry/script/Deploy.s.sol`    |
 
@@ -67,7 +86,7 @@ forge test
 >
 > 본 저장소의 코드는 메인넷 fork 위에서 라우터 호출 흐름을 보여주는 **교육·연구용 데모**이며, 실제로 브로드캐스트하지 않습니다. 메인넷에 적용하려는 경우 관할 법령·해당 프로토콜 약관을 반드시 확인하시기 바랍니다.
 
-참고: [Chainalysis — Crypto Market Manipulation 2025](https://www.chainalysis.com/blog/crypto-market-manipulation-wash-trading-pump-and-dump-2025/), [Wash Trading on DEXes (Medium)](https://medium.com/@alexanderzaidelson/wash-trading-and-mirrorwash-trading-on-dexes-1f15a1f4587b), [Berkeley DeFi — Detecting and Quantifying Wash Trading on DEXes (PDF)](https://berkeley-defi.github.io/assets/material/Detecting%20and%20Quantifying%20Wash%20Trading.pdf), [CoinDesk — DOJ sting on crypto wash trading (2026)](https://www.coindesk.com/business/2026/04/02/doj-sting-exposes-crypto-wash-trading-continues-to-be-far-more-common-than-expected).
+참고: [Chainalysis: Crypto Market Manipulation 2025](https://www.chainalysis.com/blog/crypto-market-manipulation-wash-trading-pump-and-dump-2025/), [Wash Trading on DEXes (Medium)](https://medium.com/@alexanderzaidelson/wash-trading-and-mirrorwash-trading-on-dexes-1f15a1f4587b), [Berkeley DeFi: Detecting and Quantifying Wash Trading on DEXes (PDF)](https://berkeley-defi.github.io/assets/material/Detecting%20and%20Quantifying%20Wash%20Trading.pdf), [CoinDesk: DOJ sting on crypto wash trading (2026)](https://www.coindesk.com/business/2026/04/02/doj-sting-exposes-crypto-wash-trading-continues-to-be-far-more-common-than-expected).
 
 사용된 컨트랙트는 다음과 같습니다.
 
